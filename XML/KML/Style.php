@@ -18,6 +18,8 @@
 *
 */
 
+require_once 'XML/KML/Common.php';
+
 /**
 * Class to define a style to be added to the KML class
 *
@@ -27,30 +29,11 @@
 * @license  http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
 * @link     ??
 */
-class XML_KML_Style
+class XML_KML_Style extends XML_KML_Common
 {
-    /**
-    * Constructor
-    *
-    */
-    function __construct()
-    {
-        protected $type = 'style';
-        protected $id, $iconid, $iconhref;
-    }
-    
-    /**
-    * Destructor
-    *
-    */
-    function __destruct()
-    {
-        // Destory all values
-        foreach ($this as &$v) {
-            $v = null;
-        }
-    }
-    
+    protected $type = 'style';
+    protected $id, $iconid, $iconhref;
+
     /**
     * Sets the id, stripping tags
     *
@@ -81,6 +64,7 @@ class XML_KML_Style
     * @param string $href Link to the icon for the style
     *
     * @return void
+    * @throws XML_KML_Exception When an invalid URL is provided.
     */
     public function setIconLink($href)
     {
@@ -89,7 +73,7 @@ class XML_KML_Style
         }
         
         // Not a valid URL
-        return false;
+        throw new XML_KML_Exception("Invalid URL.");
     }
 }
 

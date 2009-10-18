@@ -19,6 +19,7 @@
 */
 
 require_once 'XML/KML/Exception.php';
+require_once 'XML/KML/Common.php';
 
 /**
 * Class to define a place to be added to the KML class
@@ -29,32 +30,12 @@ require_once 'XML/KML/Exception.php';
 * @license  http://www.gnu.org/copyleft/lesser.html  LGPL License 2.1
 * @link     ??
 */
-class XML_KML_Place
+class XML_KML_Place extends XML_KML_Common
 {
     protected $type = 'place';
     protected $folder = '**[root]**';
     protected $id, $name, $desc, $style, $coords;
 
-    /**
-    * Constructor
-    *
-    */
-    public function __construct()
-    {
-    }
-    
-    /**
-    * Destructor
-    *
-    */
-    public function __destruct()
-    {
-        // Destory all values
-        foreach ($this as &$v) {
-            $v = null;
-        }
-    }
-    
     /**
     * Encloses a string in CDATA escaping if it
     * contains html tags

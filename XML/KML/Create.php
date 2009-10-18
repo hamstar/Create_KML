@@ -18,6 +18,7 @@
 *
 */
 
+require 'XML/KML/Exception.php';
 require 'XML/KML/Place.php';
 require 'XML/KML/Style.php';
 
@@ -87,20 +88,13 @@ class XML_KML_Create
     /**
     * Adds an item to the KML data
     *
-    * @param object $item The object to add
+    * @param XML_KML_Common $item The object to add
     *
-    * @return boolean
+    * @return $this
+    * @throws XML_KML_Exception When you inject something we don't know about.
     */
-    public function addItem($item)
+    public function addItem(XML_KML_Common $item)
     {
-        if (!$item
-            || !is_object($item)
-            || $item->type != 'style'
-            && $item->type != 'place'
-        ) {
-            return false;
-        }
-   
         // Switch which array to put the given item in
         switch ($item->type) {
         case 'place':
@@ -112,10 +106,9 @@ class XML_KML_Create
             break;
                
         default:
-            return false;
-            break;
+            throw new XML_KML_Exception("Unsupported object.");
         }
-        return true;
+        return $this;
     }
    
     /**
