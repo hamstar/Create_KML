@@ -8,7 +8,7 @@ A PHP class for creating KML code from a set of data and outputting it to a stri
 
 Simply require and initialize the Create_KML class like so:
 
-	require_once 'Main.php';
+	require_once 'XML/KML/Create.php';
 	$kml = new XML_KML_Create;
 
 ### Adding styles to the KML document

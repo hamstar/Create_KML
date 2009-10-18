@@ -18,8 +18,8 @@
 *
 */
 
-require 'KML/Place.php';
-require 'KML/Style.php';
+require 'XML/KML/Place.php';
+require 'XML/KML/Style.php';
 
 
 /**
@@ -53,23 +53,17 @@ class XML_KML_Create
     * Empty constructor
     *
     */
-    function __construct()
+    public function __construct()
     {
-    
     }
     
     /**
     * Destructor
     *
     */
-    function __destruct()
+    public function __destruct()
     {
-    
-        // Destory all values
-        foreach ($this as &$v) {
-            $v = null;
-        }
-    
+        $this->reset();
     }
     
     /**
@@ -95,8 +89,7 @@ class XML_KML_Create
     *
     * @param object $item The object to add
     *
-    * @access public
-    * @return bool
+    * @return boolean
     */
     public function addItem($item)
     {
@@ -220,7 +213,7 @@ class XML_KML_Create
     * @access public
     * @return void
     */
-    public function clear()
+    public function reset()
     {
         $this->folders = null;
         $this->styles = null;

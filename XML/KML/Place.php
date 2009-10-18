@@ -18,6 +18,8 @@
 *
 */
 
+require_once 'XML/KML/Exception.php';
+
 /**
 * Class to define a place to be added to the KML class
 *
@@ -29,22 +31,23 @@
 */
 class XML_KML_Place
 {
+    protected $type = 'place';
+    protected $folder = '**[root]**';
+    protected $id, $name, $desc, $style, $coords;
+
     /**
     * Constructor
     *
     */
-    function __construct()
+    public function __construct()
     {
-        protected $type = 'place';
-        protected $folder = '**[root]**';
-        protected $id, $name, $desc, $style, $coords;
     }
     
     /**
     * Destructor
     *
     */
-    function __destruct()
+    public function __destruct()
     {
         // Destory all values
         foreach ($this as &$v) {
@@ -58,10 +61,9 @@ class XML_KML_Place
     *
     * @param string $data Data to escape
     *
-    * @access private
     * @return string
     */
-    private function _cdataEscape($data)
+    protected function cdataEscape($data)
     {
         if (strlen($data) != strlen(strip_tags($data))) {
             return "<![CDATA[$data]]>";
@@ -81,6 +83,7 @@ class XML_KML_Place
     public function setId($id)
     {
         $this->id = strip_tags($id);
+        return $this;
     }
     
     /**
@@ -93,7 +96,8 @@ class XML_KML_Place
     */
     public function setName($name)
     {
-        $this->name = $this->_cdataEscape($name);
+        $this->name = $this->cdataEscape($name);
+        return $this;
     }
     
     /**
@@ -102,11 +106,12 @@ class XML_KML_Place
     * @param string $desc Description of the placemark
     *
     * @access public
-    * @return void
+    * @return $this
     */
     public function setDesc($desc)
     {
-        $this->desc = $this->_cdataEscape($desc);
+        $this->desc = $this->cdataEscape($desc);
+        return $this;
     }
     
     /**
@@ -116,7 +121,7 @@ class XML_KML_Place
     * @param string $style Style of the placemark
     *
     * @access public
-    * @return void
+    * @return $this
     */
     public function setStyle($style)
     {
@@ -129,6 +134,8 @@ class XML_KML_Place
         }
         
         $this->style = $style;
+
+        return $this;
     }
     
     /**
@@ -138,7 +145,8 @@ class XML_KML_Place
     * @param float $lng Longitude coordinate
     *
     * @access public
-    * @return bool
+    * @return $this
+    * @throws XML_KML_Exception
     */
     public function setCoords($lat, $lng)
     {
@@ -150,11 +158,11 @@ class XML_KML_Place
         if (is_float($lat) && is_float($lng)) {
             // Set coords
             $this->coords = $lat . ',' . $lng;
-            return true;
+            return $this;
         }
         
         // Not a valid set of coordinates
-        return false;
+        throw new XML_KML_Exception("Invalid set of coordinates.");
     }
     
     /**
@@ -163,7 +171,7 @@ class XML_KML_Place
     * @param string $folder Folder which the placemark goes in
     *
     * @access public
-    * @return void
+    * @return $this
     */
     public function setFolder($folder = false)
     {
@@ -172,8 +180,7 @@ class XML_KML_Place
         } else {
             $this->folder = $folder;
         }
-    }
-    
-    
+        return $this;
+    }    
 }
 ?>
