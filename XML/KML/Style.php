@@ -1,5 +1,4 @@
 <?php
-e
 /**
 * Create a KML file
 *
