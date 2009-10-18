@@ -15,11 +15,12 @@ Simply require and initialize the Create_KML class like so:
 
 To add styles you need to create a new style object, add your style data to it and add it into the KML document.  For multiple styles it would be best to put the following inside a [foreach](http://php.net/foreach).
 
-	$sytle = new XML_KML_Style;
+    // assumes you have $kml setup
+	$style = $kml->createStyle();
 
-	$style->setId($style_id);
-	$style->setIconId($icon_id);
-	$style->setIconLink($link);
+	$style->setId($style_id)
+	    ->setIconId($icon_id)
+        ->setIconLink($link);
 
 	$kml->addItem($style);
 
@@ -27,16 +28,17 @@ To add styles you need to create a new style object, add your style data to it a
 
 To add a placemark you do the same as for a styles but use a place object.  As such:
 
+    // assumes you have $kml setup
 	while ( list($id,$name,$desc,$style_id,$lat,$lng) = mysql_fetch_array($result) ) {
 
-		$place = new XML_KML_Place;
+		$place = $kml->createPlace();
 
-		$place->setId($id);
-		$place->setName($name);
-		$place->setDesc($desc);
-		$place->setFolder();
-		$place->setStyle($style_id);
-		$place->setCoords($lat,$lng);
+		$place->setId($id)
+            ->setName($name)
+		    ->setDesc($desc)
+		    ->setFolder()
+		    ->setStyle($style_id)
+		    ->setCoords($lat,$lng);
 
 		$kml->addItem($place);
 
