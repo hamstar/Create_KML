@@ -18,8 +18,8 @@ class XMLKMLCreateTestCase extends PHPUnit_Framework_TestCase
     public static function setGetProvider()
     {
         return array(
-            array(1, 1, 'setId'),
-            array(1, '<b>1</b>', 'setId'),
+            array(1, 1, 'Id'),
+            array(1, '<b>1</b>', 'Id'),
         );
     }
 
@@ -30,8 +30,14 @@ class XMLKMLCreateTestCase extends PHPUnit_Framework_TestCase
     {
         $style = $this->kml->createStyle();
 
-        $resp  = $style->$func();
+        $method = "set{$func}";
+        $resp   = $style->$method($value);
+
+        // test fluent interface
         $this->assertEquals('XML_KML_Style', get_class($resp));
-        $this->assertEquals($assert, $value);
+
+        // test if XML_KML_Common::sanitize(), etc. worked
+        $method = "get{$func}";
+        $this->assertEquals($assert, $style->$method());
     }
 }
