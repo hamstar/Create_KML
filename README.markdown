@@ -66,4 +66,4 @@ Or force the user to download the file:
 
 ## Contact
 
-Problems, comments, and suggestions all welcome: [hamstar@telescum.co.nz](mailto:hamstar@telescum.co.nz)
+Problems, comments, and suggestions all welcome at: [hamstar@telescum.co.nz](mailto:hamstar@telescum.co.nz)
