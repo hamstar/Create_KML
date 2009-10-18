@@ -1,5 +1,4 @@
 <?php
-
 /**
 * Create a KML file
 *
@@ -64,6 +63,13 @@ class XML_KML_Create
         $this->reset();
     }
 
+    /**
+     * Autoloader
+     *
+     * @param string $className The name of the class to load.
+     *
+     * @return boolean
+     */
     public static function autoload($className)
     {
         static $path;
@@ -73,7 +79,7 @@ class XML_KML_Create
         }
 
         $file = $path . '/' . str_replace('_', '/', $className) . '.php';
-        return $file;
+        return require $file;
     }
 
     public function createPlace()
