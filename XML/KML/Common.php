@@ -30,10 +30,22 @@
 class XML_KML_Common
 {
     /**
+     * Remove HTML from input.
+     *
+     * @param string $data
+     *
+     * @return string
+     */
+    protected function sanitize($data)
+    {
+        return strip_tags($data); // to be improved
+    }
+
+    /**
     * Destructor
     *
     */
-    function __destruct()
+    public function __destruct()
     {
         // Destory all values
         foreach ($this as &$v) {

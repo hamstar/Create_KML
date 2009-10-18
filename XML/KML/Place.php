@@ -46,7 +46,7 @@ class XML_KML_Place extends XML_KML_Common
     */
     protected function cdataEscape($data)
     {
-        if (strlen($data) != strlen(strip_tags($data))) {
+        if (strlen($data) != strlen($this->sanitize($data))) {
             return "<![CDATA[$data]]>";
         }
         
@@ -63,7 +63,7 @@ class XML_KML_Place extends XML_KML_Common
     */
     public function setId($id)
     {
-        $this->id = strip_tags($id);
+        $this->id = $this->sanitize($id);
         return $this;
     }
     
@@ -107,7 +107,7 @@ class XML_KML_Place extends XML_KML_Common
     public function setStyle($style)
     {
         
-        $style = strip_tags($style);
+        $style = $this->sanitize($style);
         
         // Add a hash for the style
         if (substr($style, 0, 1) != '#') {

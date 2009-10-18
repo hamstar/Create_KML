@@ -1,5 +1,5 @@
 <?php
-
+e
 /**
 * Create a KML file
 *
@@ -18,8 +18,6 @@
 *
 */
 
-require_once 'XML/KML/Common.php';
-
 /**
 * Class to define a style to be added to the KML class
 *
@@ -34,6 +32,21 @@ class XML_KML_Style extends XML_KML_Common
     protected $type = 'style';
     protected $id, $iconid, $iconhref;
 
+    public function getIconId()
+    {
+        return $this->iconid;
+    }
+
+    public function getIconLink()
+    {
+        return $this->iconhref;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
     /**
     * Sets the id, stripping tags
     *
@@ -43,7 +56,7 @@ class XML_KML_Style extends XML_KML_Common
     */
     public function setId($id)
     {
-        $this->id = strip_tags($id);
+        $this->id = $this->sanitize($id);
     }
     
     /**
@@ -55,7 +68,7 @@ class XML_KML_Style extends XML_KML_Common
     */
     public function setIconId($id)
     {
-        $this->iconid = strip_tags($id);
+        $this->iconid = $this->sanitize($id);
     }
     
     /**
@@ -76,5 +89,4 @@ class XML_KML_Style extends XML_KML_Common
         throw new XML_KML_Exception("Invalid URL.");
     }
 }
-
 ?>

@@ -18,10 +18,7 @@
 *
 */
 
-require 'XML/KML/Exception.php';
-require 'XML/KML/Place.php';
-require 'XML/KML/Style.php';
-
+spl_autoload_register(array('XML_KML_Create', 'autoload'));
 
 /**
 * Main class to add items to and create the KML
@@ -65,6 +62,28 @@ class XML_KML_Create
     public function __destruct()
     {
         $this->reset();
+    }
+
+    public static function autoload($className)
+    {
+        static $path;
+
+        if ($path === null) {
+            $path = dirname(dirname(dirname(__FILE__)));
+        }
+
+        $file = $path . '/' . str_replace('_', '/', $className) . '.php';
+        return $file;
+    }
+
+    public function createPlace()
+    {
+        return new XML_KML_Place();
+    }
+
+    public function createStyle()
+    {
+        return new XML_KML_Style();
     }
     
     /**
