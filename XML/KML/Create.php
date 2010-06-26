@@ -121,7 +121,7 @@ class XML_KML_Create
     public function addItem(XML_KML_Common $item)
     {
         // Switch which array to put the given item in
-        switch ($item->type) {
+        switch ($item->getType()) {
         case 'place':
             $this->folders[$item->folder][] = $item;
             break;
