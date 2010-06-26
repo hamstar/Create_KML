@@ -31,6 +31,11 @@ class XML_KML_Style extends XML_KML_Common
     protected $type = 'style';
     protected $id, $iconid, $iconhref;
 
+    public function getType()
+    {
+        return $this->type;
+    }
+
     public function getIconId()
     {
         return $this->iconid;
