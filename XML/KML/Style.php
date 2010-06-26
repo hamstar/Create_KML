@@ -56,6 +56,7 @@ class XML_KML_Style extends XML_KML_Common
     public function setId($id)
     {
         $this->id = $this->sanitize($id);
+        return $this;
     }
     
     /**
@@ -68,6 +69,7 @@ class XML_KML_Style extends XML_KML_Common
     public function setIconId($id)
     {
         $this->iconid = $this->sanitize($id);
+        return $this;
     }
     
     /**
@@ -82,6 +84,7 @@ class XML_KML_Style extends XML_KML_Common
     {
         if (filter_var($href, FILTER_VALIDATE_URL) != false) {
             $this->iconhref = $href;
+            return $this;
         }
         
         // Not a valid URL
