@@ -32,9 +32,9 @@ require_once 'XML/KML/Common.php';
 */
 class XML_KML_Place extends XML_KML_Common
 {
-    protected $type = 'place';
-    protected $folder = '**[root]**';
-    protected $id, $name, $desc, $style, $coords;
+    private $type = 'place';
+    private $folder = '**[root]**';
+    private $id, $name, $desc, $style, $coords;
 
     /**
     * Encloses a string in CDATA escaping if it
@@ -44,7 +44,7 @@ class XML_KML_Place extends XML_KML_Common
     *
     * @return string
     */
-    protected function cdataEscape($data)
+    private function cdataEscape($data)
     {
         if (strlen($data) != strlen($this->sanitize($data))) {
             return "<![CDATA[$data]]>";
@@ -58,7 +58,6 @@ class XML_KML_Place extends XML_KML_Common
     *
     * @param string $id Id of the placemark
     *
-    * @access public
     * @return void
     */
     public function setId($id)
@@ -72,7 +71,6 @@ class XML_KML_Place extends XML_KML_Common
     *
     * @param string $name Name of the placemark
     *
-    * @access public
     * @return void
     */
     public function setName($name)
@@ -86,7 +84,6 @@ class XML_KML_Place extends XML_KML_Common
     *
     * @param string $desc Description of the placemark
     *
-    * @access public
     * @return $this
     */
     public function setDesc($desc)
@@ -101,7 +98,6 @@ class XML_KML_Place extends XML_KML_Common
     *
     * @param string $style Style of the placemark
     *
-    * @access public
     * @return $this
     */
     public function setStyle($style)
@@ -125,7 +121,6 @@ class XML_KML_Place extends XML_KML_Common
     * @param float $lat Latitude coordinate
     * @param float $lng Longitude coordinate
     *
-    * @access public
     * @return $this
     * @throws XML_KML_Exception
     */
@@ -151,7 +146,6 @@ class XML_KML_Place extends XML_KML_Common
     *
     * @param string $folder Folder which the placemark goes in
     *
-    * @access public
     * @return $this
     */
     public function setFolder($folder = false)
