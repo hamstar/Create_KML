@@ -47,7 +47,8 @@ class XML_KML_Place extends XML_KML_Common
     private function cdataEscape($data)
     {
         if (strlen($data) != strlen($this->sanitize($data))) {
-            return "<![CDATA[$data]]>";
+            $data = str_replace( ']]>', '', $data );
+            return '<![CDATA['.$data.']]>';
         }
         
         return $data;
