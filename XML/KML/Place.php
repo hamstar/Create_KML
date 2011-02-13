@@ -59,7 +59,7 @@ class XML_KML_Place extends XML_KML_Common
     *
     * @param string $id Id of the placemark
     *
-    * @return void
+    * @return XML_KML_Place this object
     */
     public function setId($id)
     {
@@ -68,11 +68,21 @@ class XML_KML_Place extends XML_KML_Common
     }
     
     /**
+    * Returns the ID
+    *
+    * @return integer the id of this place
+    */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
     * Sets the name escaping tags with CDATA
     *
     * @param string $name Name of the placemark
     *
-    * @return void
+    * @return XML_KML_Place this object
     */
     public function setName($name)
     {
@@ -81,11 +91,21 @@ class XML_KML_Place extends XML_KML_Common
     }
     
     /**
+    * Return the name of this place
+    *
+    * @return string the name
+    */
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    /**
     * Sets the description escaping tags with CDATA
     *
     * @param string $desc Description of the placemark
     *
-    * @return $this
+    * @return XML_KML_Place this object
     */
     public function setDesc($desc)
     {
@@ -94,12 +114,22 @@ class XML_KML_Place extends XML_KML_Common
     }
     
     /**
+    * Returns the description of this place
+    *
+    * @return string the description
+    */
+    public function getDesc()
+    {
+        return $this->desc;
+    }
+    
+    /**
     * Sets the style stripping any html and adding
     * a hash sign if not present for the style
     *
     * @param string $style Style of the placemark
     *
-    * @return $this
+    * @return XML_KML_Place this object
     */
     public function setStyle($style)
     {
@@ -117,12 +147,22 @@ class XML_KML_Place extends XML_KML_Common
     }
     
     /**
+    * Returns the style of this place
+    *
+    * @return string the style
+    */
+    public function getStyle()
+    {
+        return $this->style;
+    }
+    
+    /**
     * Sets the coordinates, checking that they are floats
     *
     * @param float $lat Latitude coordinate
     * @param float $lng Longitude coordinate
     *
-    * @return $this
+    * @return XML_KML_Place this objectz
     * @throws XML_KML_Exception
     */
     public function setCoords($lat, $lng)
@@ -143,11 +183,21 @@ class XML_KML_Place extends XML_KML_Common
     }
     
     /**
+    * Return the coordinates of this place
+    *
+    * @return string the coordinates
+    */
+    public function getCoords()
+    {
+        return $this->coords;
+    }
+    
+    /**
     * Sets the folder name or empty argument sets the folder to root
     *
     * @param string $folder Folder which the placemark goes in
     *
-    * @return $this
+    * @return XML_KML_Place this object
     */
     public function setFolder($folder = false)
     {
@@ -157,6 +207,16 @@ class XML_KML_Place extends XML_KML_Common
             $this->folder = $folder;
         }
         return $this;
-    }    
+    }
+    
+    /**
+    * Return the folder which this place resides
+    *
+    * @return string the folder
+    */
+    public function getFolder()
+    {
+        return $this->folder;
+    }
 }
 ?>
