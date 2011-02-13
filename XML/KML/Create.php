@@ -79,35 +79,53 @@ class XML_KML_Create
         }
 
         $file = $path . '/' . str_replace('_', '/', $className) . '.php';
-        return require $file;
+        return require_once $file;
     }
 
+    /**
+    * Creates and returns a new XML_KML_Place object
+    *
+    * @return XML_KML_Place a style object
+    */
     public function createPlace()
     {
         return new XML_KML_Place();
     }
 
+    /**
+    * Creates and returns a new XML_KML_Style object
+    *
+    * @return XML_KML_Style a style object
+    */
     public function createStyle()
     {
         return new XML_KML_Style();
     }
     
     /**
-    * Print the content header for a KML file or optionally an XML file
-    * (so it can be viewed in a browser)
-    *
-    * @param bool $xml true will print xml header
+    * Set the Content-type of the HTTP header to text/xml so it
+    * can be viewed nicely in the browser - good for debugging
     *
     * @access public
-    * @return void
+    * @return XML_KML_Create this object
     */
-    public function printHeader($xml = false)
+    public function sendPlainTextHeader()
     {
-        if ($xml == false) {
-            header('Content-type: application/vnd.google-earth.kml+xml');
-        } else {
-            header('Content-type: text/xml');
-        }
+        header('Content-type: text/xml');
+        return $this;
+    }
+
+    /**
+    * Set the Content-type of the HTTP header to application/vnd.google-earth.kml+xml
+    * so it can be downloaded as an application file.
+    *
+    * @access public
+    * @return XML_KML_Create this object
+    */
+    public function sendXMLHeader()
+    {
+        header('Content-type: application/vnd.google-earth.kml+xml');
+        return $this;
     }
    
     /**
@@ -131,7 +149,7 @@ class XML_KML_Create
             break;
                
         default:
-            throw new XML_KML_Exception("Unsupported object.");
+            throw new XML_KML_Exception('Unsupported object of type '.gettype($item).' added');
         }
         return $this;
     }
@@ -236,5 +254,6 @@ class XML_KML_Create
         $this->folders = null;
         $this->styles = null;
     }
+    
 }
 ?>
