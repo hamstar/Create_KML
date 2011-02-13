@@ -177,13 +177,13 @@ class XML_KML_Create
         // Set all the styles for the document
         foreach ($this->styles as $s) {
             $style = $doc->addChild('Style');
-            $style->addAttribute('id', $s->id);
+            $style->addAttribute('id', $s->getId() );
             
             $iconStyle = $style->addChild('IconStyle');
-            $iconStyle->addAttribute('id', $s->iconid);
+            $iconStyle->addAttribute('id', $s->getIconId() );
             
             $icon = $iconStyle->addChild('Icon');
-            $icon->addChild('href', $s->iconhref);
+            $icon->addChild('href', $s->getIconLink() );
         }
        
         // Set all the folders and places in each folder
@@ -199,14 +199,14 @@ class XML_KML_Create
                 
                     // Add all the placemark details
                     $place = $folder->addChild('Placemark');
-                    $place->addAttribute('id', $p->id);
-                    $place->addChild('name', $p->name);
-                    $place->addChild('description', $p->desc);
-                    $place->addChild('styleUrl', $p->style);
+                    $place->addAttribute('id', $p->getId() );
+                    $place->addChild('name', $p->getName() );
+                    $place->addChild('description', $p->getDesc() );
+                    $place->addChild('styleUrl', $p->getStyle() );
                     
                     // Add coordinates information
                     $point = $place->addChild('Point');
-                    $point->addChild('coordinates', $p->coords);
+                    $point->addChild('coordinates', $p->getCoords() );
                 }
             }
         }
@@ -216,14 +216,14 @@ class XML_KML_Create
                     
             // Add all the placemark details
             $place = $folder->addChild('Placemark');
-            $place->addAttribute('id', $p->id);
-            $place->addChild('name', $p->name);
-            $place->addChild('description', $p->desc);
-            $place->addChild('styleUrl', $p->style);
+            $place->addAttribute('id', $p->getId() );
+            $place->addChild('name', $p->getName() );
+            $place->addChild('description', $p->getDesc() );
+            $place->addChild('styleUrl', $p->getStyle() );
             
             // Add coordinates information
             $point = $place->addChild('Point');
-            $point->addChild('coordinates', $p->coords);
+            $point->addChild('coordinates', $p->getCoords() );
                 
         }
         
